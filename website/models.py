@@ -1,7 +1,6 @@
-from website import db
 from flask_login import UserMixin
 from sqlalchemy.sql import func
-
+from . import db  # Move this import here to avoid circular dependency
 
 class Note(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -15,5 +14,3 @@ class User(db.Model, UserMixin):
     password = db.Column(db.String(150))
     first_name = db.Column(db.String(150))
     notes = db.relationship('Note')
-
-
